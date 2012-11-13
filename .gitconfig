@@ -1,0 +1,23 @@
+[user]
+	name = Kapil Arya
+	email = kapil@ccs.neu.edu
+[color]
+        #diff = auto
+	status = auto
+	branch = auto
+	ui = always
+[alias]
+	svn-diff = !git-svn-diff.sh
+	sd = !git-svn-diff.sh
+	sup = svn rebase
+	sci = svn dcommit
+	st = status
+	di = diff
+	co = checkout
+	ci = commit
+	br = branch
+	sta = stash
+[color "diff"]
+	meta = blue black bold
+	frag = cyan black bold
+	func = yellow black bold

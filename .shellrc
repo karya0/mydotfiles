@@ -1,0 +1,96 @@
+#!/bin/sh
+set +o verbose
+
+ulimit -c 100000000
+
+#add /sbin to path
+if ! echo $PATH | grep :/sbin > /dev/null ; then
+  PATH=/sbin:"${PATH}"
+fi
+
+#add ~/usr/bin to path
+if [ -d ~/usr/bin ] ; then
+ if ! echo $PATH | grep ~/usr/bin > /dev/null ; then
+   PATH=~/usr/bin:"${PATH}"
+ fi
+fi
+
+# #add ~/bin to path
+# if [ -d ~/bin ] ; then
+#  if ! echo $PATH | grep ~/bin > /dev/null ; then
+#    PATH=~/bin:"${PATH}"
+#  fi
+# fi
+
+export PATH=$HOME/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/usr/lib:$LD_LIBRARY_PATH
+
+#export DMTCP_HOST=tank
+export DMTCP_PORT=7799
+#export DMTCP_CHECKPOINT_DIR=/tmp
+
+alias sd="svn diff --diff-cmd=colordiff"
+alias svd="svn diff --diff-cmd=svnvimdiff"
+alias sgd="svn diff --diff-cmd=svngvimdiff"
+alias svnq="svn status -q"
+
+alias gd="git diff"
+alias gd1="git diff HEAD~1"
+alias gd2="git diff HEAD~2"
+alias gd3="git diff HEAD~3"
+alias gd4="git diff HEAD~4"
+alias gd21="git diff HEAD~2 HEAD~1"
+alias gd32="git diff HEAD~3 HEAD~2"
+alias gd43="git diff HEAD~4 HEAD~3"
+alias gd54="git diff HEAD~5 HEAD~4"
+alias gdm="git diff master"
+alias gdc="git diff --cached"
+alias gst="git status"
+alias gl="git log"
+
+alias pstree="pstree -pu $USER"
+alias kpstree="pstree -p `pgrep konsole`"
+alias grep="grep --color"
+
+export LS_OPTIONS='--color=auto'
+eval `dircolors`
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias ltr='ls $LS_OPTIONS -ltr'
+alias l='ls $LS_OPTIONS -lAh'
+alias rm='rm -vi'
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias -g vi='vim'
+alias untgz='tar -xzvf'
+alias p='ps -eHf f'
+#alias dselect='screen su --command="dselect update select install"'
+#alias ssh='ssh -X'
+alias xtermcmd='xterm -e'
+#alias make='make -j3'
+
+
+#xhost +local: 2>&1 > /dev/null
+
+alias linuxmachines=/proj/crew/bin/linuxmachines
+export CSCOPE_EDITOR=gvim
+function lfd() { ls -l /proc/$*/fd;}
+function cmaps() { cat /proc/$*/maps;}
+function tst()
+{
+  echo "PID: \t Tracer  Status"
+  for j in $*; do
+    for i in `ls /proc/$j/task`; do
+      tracer_pid=`grep TracerPid /proc/$i/status | cut -f2`
+      state=`grep State /proc/$i/status | cut -f2`
+      echo "$i:\t $tracer_pid \t $state"
+    done
+  done;
+}
+
+function gdp () { rev=$1; shift; git diff $rev~1 $rev $*; }
+
+function pclean () { pkill -9 dmtcp; pkill -9 gdb; pkill -9 mtcp_restart;}
+
+alias kpstree="/usr/bin/pstree `pgrep konsole` -p"
+alias gsk=git stash --keep-index
