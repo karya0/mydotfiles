@@ -77,7 +77,6 @@ if has("autocmd")
     \ endif 
 endif
 
-
 " Now we set some defaults for the editor 
 set autoindent		" always set autoindenting on
 set linebreak		" Don't wrap words by default
@@ -115,14 +114,15 @@ if has("gui_gtk2")
   match OverLength '\%>81v.\+'
 
 
-   set guifont=MiscConsole\ 8
-"    set guifont=LucidaSansTypewriter\ 9
+  set guifont=Monospace\ 8
+"  set guifont=MiscConsole\ 8
+"  set guifont=LucidaSansTypewriter\ 9
 else
 "    set guifont=-misc-fixed-medium-r-normal--10-100-75-75-c-60-iso8859-1
-    set guifont=-*-lucidatypewriter-*-*-*-*-9-*-*-*-*-*-*-*-
+    set guifont=-*-lucidatypewriter-*-*-*-*-8-*-*-*-*-*-*-*-
 endif
 
-highlight Normal   gui=none  guifg=gray guibg=black
+highlight Normal guifg=darkgray guibg=black
 
 " Remove menu bar
 set guioptions-=m
@@ -183,7 +183,7 @@ if exists("colors_name") == 0
 
     "background set to dark in .vimrc
     "So pick appropriate defaults.
-    hi Normal     guifg=gray guibg=black
+    hi Normal     guifg=darkgray guibg=black
     hi Visual     gui=none guifg=black guibg=yellow
 
     "The following removes bold from all highlighting
