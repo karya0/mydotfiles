@@ -121,7 +121,7 @@ class ColorBT(gdb.Command):
         regexp = "^#(\d+)\s+(0x[0-9a-f]+)? in (.+?)\s+\((.*)\)\s+" \
                 + "(at|from)\s+(.+)$"
         backtrace = gdb.execute("bt " + arg, True, True)
- 
+
         bt_list = re.findall(regexp, backtrace, re.MULTILINE)
         for f in bt_list:
             self.print_backtrace_frame(f)

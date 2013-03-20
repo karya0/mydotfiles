@@ -23,6 +23,7 @@ fi
 # fi
 
 export PATH=$HOME/bin:$PATH
+export PATH=/home/kapil/softwares/cov-analysis-linux64-6.5.0/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/usr/lib:$LD_LIBRARY_PATH
 
 #export DMTCP_HOST=tank
@@ -47,6 +48,7 @@ alias gdm="git diff master"
 alias gdc="git diff --cached"
 alias gst="git status"
 alias gl="git log"
+alias gcp="git cherry-pick"
 
 alias pstree="pstree -pu $USER"
 alias kpstree="pstree -p `pgrep konsole`"
@@ -76,6 +78,7 @@ alias linuxmachines=/proj/crew/bin/linuxmachines
 export CSCOPE_EDITOR=gvim
 function lfd() { ls -l /proc/$*/fd;}
 function cmaps() { cat /proc/$*/maps;}
+function cstatus() { cat /proc/$*/status;}
 function tst()
 {
   echo "PID: \t Tracer  Status"
@@ -93,4 +96,20 @@ function gdp () { rev=$1; shift; git diff $rev~1 $rev $*; }
 function pclean () { pkill -9 dmtcp; pkill -9 gdb; pkill -9 mtcp_restart;}
 
 alias kpstree="/usr/bin/pstree `pgrep konsole` -p"
+alias ypstree="/usr/bin/pstree `pgrep yakuake` -p"
 alias gsk=git stash --keep-index
+
+function enable_scroll()
+{
+  for i in `xinput list | grep Keyboard | cut -f2|cut -d'=' -f2`
+  do
+    xinput set-int-prop $i "Evdev Wheel Emulation" 8 1
+    xinput set-int-prop $i "Evdev Wheel Emulation Button" 8 2
+    xinput set-int-prop $i "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+  done
+}
+
+xset b off
+xset r rate 300 50
+synclient TouchpadOff=1
+synclient TouchpadOff=1
