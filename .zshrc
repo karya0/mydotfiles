@@ -1,5 +1,6 @@
-# User defined Paths and other env variables
-source $HOME/.shellrc
+if [ -z $SHELLRC_DEFINED ]; then
+  source $HOME/.shellrc
+fi
 
 # History options.
 export HISTFILE=$HOME/.zsh_history

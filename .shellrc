@@ -1,5 +1,6 @@
 #!/bin/sh
 set +o verbose
+#export SHELLRC_DEFINED=1
 
 ulimit -c 100000000
 
@@ -26,7 +27,7 @@ export PATH=$HOME/bin:$PATH
 export PATH=/home/kapil/softwares/cov-analysis-linux64-6.5.0/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/usr/lib:$LD_LIBRARY_PATH
 
-#export DMTCP_HOST=tank
+export DMTCP_HOST=localhost
 export DMTCP_PORT=7799
 #export DMTCP_CHECKPOINT_DIR=/tmp
 
@@ -108,8 +109,3 @@ function enable_scroll()
     xinput set-int-prop $i "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
   done
 }
-
-xset b off
-xset r rate 300 50
-synclient TouchpadOff=1
-synclient TouchpadOff=1

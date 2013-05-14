@@ -17,20 +17,18 @@ set expandtab
 
 filetype plugin indent on " load filetype plugins/indent settings
 
-autocmd FileType python setlocal shiftwidth=4 tabstop=4
 
 set autochdir " always switch to the current file directory
 
 set wildmenu
 set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png
 set wildmode=list:longest,full
-set cursorline
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 syntax on
 set hlsearch
-hi search guibg=Green guifg=Black cterm=NONE ctermbg=LightCyan ctermfg=Black 
+hi search guibg=LightGreen guifg=Black cterm=NONE ctermbg=LightCyan ctermfg=Black 
 "syntax highlight shell scripts as per POSIX,
 "not the original Bourne shell which very few use
 let g:is_posix = 1
@@ -39,6 +37,10 @@ let g:is_posix = 1
 " turn on this option as well
 set background=dark
 
+
+autocmd FileType python setlocal shiftwidth=4 tabstop=4
+autocmd Filetype tex setlocal nofoldenable
+autocmd Filetype tex set cursorline!
 
 "Make the completion menus readable
 highlight Pmenu ctermfg=white ctermbg=red guifg=white guibg=red
