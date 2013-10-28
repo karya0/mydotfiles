@@ -102,6 +102,7 @@ set mousemodel=popup
 "set spell "spell checking
 "set vb t_vb= 
 "visual beep
+set colorcolumn=81
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
@@ -112,16 +113,17 @@ if has("gui_gtk2")
   hi CursorLine ctermbg=Black guibg=#1f1f00
   hi CursorColumn ctermbg=Black guibg=#070700
   " gui=underline
-  highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  match OverLength '\%>81v.\+'
+  "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  "match OverLength '\%>81v.\+'
 
 
-  set guifont=Monospace\ 8
+
+  set guifont=Monospace\ 9
 "  set guifont=MiscConsole\ 8
 "  set guifont=LucidaSansTypewriter\ 9
 else
 "    set guifont=-misc-fixed-medium-r-normal--10-100-75-75-c-60-iso8859-1
-    set guifont=-*-lucidatypewriter-*-*-*-*-8-*-*-*-*-*-*-*-
+    set guifont=-*-lucidatypewriter-*-*-*-*-9-*-*-*-*-*-*-*-
 endif
 
 highlight Normal guifg=darkgray guibg=black
