@@ -19,10 +19,12 @@
 	sta = stash
 	ldiff = difftool -t latex   
 [color "diff"]
-	meta = blue black bold
-	frag = cyan black bold
-	func = yellow black bold
+	meta = blue bold
+	frag = cyan bold
+	func = magenta bold
 [difftool.latex]
 	cmd = latexdiff "$LOCAL" "$REMOTE"
 [difftool]
 	prompt = false
+[push]
+	default = simple
