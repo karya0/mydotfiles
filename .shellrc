@@ -53,7 +53,8 @@ alias gcp="git cherry-pick"
 
 alias pstree="pstree -pu $USER"
 alias kpstree="pstree -p `pgrep konsole`"
-alias grep="grep --color"
+alias tpstree="pstree -p | grep -v 'amarok\|akon\|Google\|dbus\|gvfs\|gconf\|kde\|chrome\|kio\|klaun\|kpat\|ksms\|tracker\|zeit\|ck-lau\|kgpb\|klipp\|kmix\|knoti\|kglob\|ktorr\|kuiser\|kwalle\|plasma\|pulse\|wine\|rsibre\|mysql\|nacl\|kactivi\|kwin\|kwrapp\|krunn\|gvim' | grep -v '^$'"
+alias grep="grep -sI --color"
 
 export LS_OPTIONS='--color=auto'
 eval `dircolors`
