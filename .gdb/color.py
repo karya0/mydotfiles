@@ -117,8 +117,50 @@ class ColorBT(gdb.Command):
         print ""
         return
 
+    def print_backtrace_frame_short(self, match_obj):
+        """Return a BacktraceFrame from the given re Match object.
+        The Match object should be a tuple (result of gre_backtrace_frame.)"""
+        _frame_num = int(match_obj[0])
+        #_addr      = match_obj[1]
+        _function  = match_obj[1]
+        _args      = match_obj[2]
+        _atfrom    = match_obj[3]
+        _file      = match_obj[4]
+        #_line      = int(match_obj[5])
+
+        print "#%s" % (_frame_num),
+        #print " %s%s%s in " % (PC, _addr, ENDC),
+        print "%s%s%s" % (FUNCTION, _function, ENDC),
+        print "(%s%s%s)" % (FILE, _args, ENDC),
+        print "%s %s%s%s" % (_atfrom, FILE, _file, ENDC),
+        #print "\b%s:%s" % (FAIL, ENDC),
+        #print "\b%s%d%s" % (LINE, frame.find_sal().line, ENDC)
+        print ""
+        return
+
     def newbt(self, arg):
-        regexp = "^#(\d+)\s+(0x[0-9a-f]+)? in (.+?)\s+\((.*)\)\s+" \
+        regexp1 = "^#(\d+)\s+0x[0-9a-f]+ in (.+?)\s+\((.*)\)\s+" \
+                + "(at|from)\s+(.+)$"
+        regexp2 = "^#(\d+)\s+(.+?)\s+\((.*)\)\s+" \
+                + "(at|from)\s+(.+)$"
+        regexp3 = "^#(\d+)\s<signal handler called>$"
+
+        backtrace = gdb.execute("bt " + arg, True, True)
+        frames = backtrace.split("\n")
+
+        for line in frames:
+            frame = re.findall(regexp1, line, re.MULTILINE)
+            if len(frame) > 0:
+                self.print_backtrace_frame_short(frame[0])
+            else:
+                frame = re.findall(regexp2, line, re.MULTILINE)
+                if len(frame) > 0:
+                    self.print_backtrace_frame_short(frame[0])
+                else:
+                    print line
+
+    def newbt_old(self, arg):
+        regexp = "^#(\d+)\s+(0x[0-9a-f]+|.+)?(?: in | )(.+?)\s+\((.*)\)\s+" \
                 + "(at|from)\s+(.+)$"
         backtrace = gdb.execute("bt " + arg, True, True)
 
