@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/kapil/academics/tesseract/run58/archive/58-30-pc/300m/tesseract-no-defrag/seq-5'
-let g:netrw_dirhist_2='/home/kapil/academics/tesseract/run58/archive/58-30-pc/300m/tesseract-no-defrag'
-let g:netrw_dirhist_3='/home/kapil/academics/tesseract/run58/archive/58-30-pc/300m/tesseract-bsst-defrag'
