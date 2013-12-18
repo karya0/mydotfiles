@@ -239,8 +239,8 @@ alias make='make -j5'
 
 [ -f ~/.ssh/config ] && : ${(A)ssh_config_hosts:=${${${${(@M)${(f)"$(<~/.ssh/config)"}:#Host *}#Host }:#*\**}:#*\?*}}
 [ -f ~/.ssh/known_hosts ] && : ${(A)ssh_known_hosts:=${${${(f)"$(<$HOME/.ssh/known_hosts)"}%%\ *}%%,*}}
-#zstyle ':completion:*:*:*' hosts $ssh_config_hosts $ssh_known_hosts
-#zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*:*:*' hosts $ssh_config_hosts $ssh_known_hosts
+zstyle ':completion:*' completer _expand _complete _correct _approximate
 
 #stty sane
 
@@ -265,7 +265,7 @@ zstyle :compinstall filename '/home/kapil/.zshrc'
 # End of lines added by compinstall
 
 #hacks to make completion suck less
-export _ssh_users() {}
+#export _ssh_users() {}
 
 
 ################################################################################
