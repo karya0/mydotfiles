@@ -23,6 +23,12 @@ fi
 #  fi
 # fi
 
+export NUM_PROCESSORS=`cut -f 1 -d : < /proc/cpuinfo | grep -c processor`
+export EDITOR=`which vim`
+export PAGER=`which less`
+export VISUAL="$EDITOR"
+export MAKEFLAGS="-j $NUM_PROCESSORS"
+
 export PATH=$HOME/bin:$PATH
 export PATH=/home/kapil/softwares/cov-analysis-linux64-6.5.0/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/usr/lib:$LD_LIBRARY_PATH
@@ -101,12 +107,12 @@ alias kpstree="/usr/bin/pstree `pgrep konsole` -p"
 alias ypstree="/usr/bin/pstree `pgrep yakuake` -p"
 alias gsk=git stash --keep-index
 
-function enable_scroll()
-{
-  for i in `xinput list | grep Keyboard | cut -f2|cut -d'=' -f2`
-  do
-    xinput set-int-prop $i "Evdev Wheel Emulation" 8 1
-    xinput set-int-prop $i "Evdev Wheel Emulation Button" 8 2
-    xinput set-int-prop $i "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
-  done
-}
+#function enable_scroll()
+#{
+#  for i in `xinput list | grep Keyboard | cut -f2|cut -d'=' -f2`
+#  do
+#    xinput set-int-prop $i "Evdev Wheel Emulation" 8 1
+#    xinput set-int-prop $i "Evdev Wheel Emulation Button" 8 2
+#    xinput set-int-prop $i "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+#  done
+#}

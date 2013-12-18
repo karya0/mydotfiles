@@ -39,6 +39,7 @@ set background=dark
 
 
 autocmd FileType python setlocal shiftwidth=4 tabstop=4
+autocmd FileType md setlocal shiftwidth=4 tabstop=4
 autocmd Filetype tex setlocal nofoldenable
 autocmd Filetype tex set cursorline!
 
@@ -102,7 +103,9 @@ set mousemodel=popup
 "set spell "spell checking
 "set vb t_vb= 
 "visual beep
-set colorcolumn=81
+if exists('+colorcolumn')
+  set colorcolumn=81
+endif
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
