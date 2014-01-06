@@ -28,3 +28,5 @@
 	prompt = false
 [push]
 	default = simple
+[svn]
+	rmdir = true
