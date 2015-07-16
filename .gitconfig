@@ -7,17 +7,15 @@
 	branch = auto
 	ui = always
 [alias]
-	svn-diff = !git-svn-diff.sh
-	sd = !git-svn-diff.sh
-	sup = svn rebase
-	sci = svn dcommit
 	st = status
 	di = diff
 	co = checkout
 	ci = commit
 	br = branch
+	pr = pull --rebase
 	sta = stash
 	ldiff = difftool -t latex   
+	wdiff = diff --color-words
 [color "diff"]
 	meta = blue bold
 	frag = cyan bold
@@ -30,3 +28,5 @@
 	default = simple
 [svn]
 	rmdir = true
+[core]
+	excludesfile = ~/.gitignore_global

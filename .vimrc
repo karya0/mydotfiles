@@ -33,15 +33,15 @@ hi search guibg=LightGreen guifg=Black cterm=NONE ctermbg=LightCyan ctermfg=Blac
 "not the original Bourne shell which very few use
 let g:is_posix = 1
 
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
 set background=dark
-
 
 autocmd FileType python setlocal shiftwidth=4 tabstop=4
 autocmd FileType md setlocal shiftwidth=4 tabstop=4
 autocmd Filetype tex setlocal nofoldenable
 autocmd Filetype tex set cursorline!
+autocmd Filetype tex set tw=72
+autocmd Filetype tex set spell
+autocmd Filetype c,c++,python set cino=(0
 
 "Make the completion menus readable
 highlight Pmenu ctermfg=white ctermbg=red guifg=white guibg=red
@@ -65,12 +65,7 @@ noremap <space> <C-f>
 " Some nice abbreviations 
 " ab #i #include ".h"? ":set hls!
 
-" Uncomment the following to have Vim load indentation rules according to the
-" detected filetype. Per default Debian Vim only load filetype specific
-" plugins.
 if has("autocmd")
-  filetype indent on
- 
   " When editing a file, always jump to the last known cursor position. 
   " Don't do it when the position is invalid or when inside an event handler 
   " (happens when dropping a file on gvim). 
@@ -139,9 +134,6 @@ set guioptions-=T
 
 " VimLatex Settings
 " =================
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
-
 " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
 " can be called correctly.
 set shellslash
@@ -150,10 +142,6 @@ set shellslash
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
-set cino=(0
-
-" OPTIONAL: This enables automatic indentation as you type.
-filetype indent on
 
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.

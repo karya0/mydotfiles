@@ -27,7 +27,9 @@ export NUM_PROCESSORS=`cut -f 1 -d : < /proc/cpuinfo | grep -c processor`
 export EDITOR=`which vim`
 export PAGER=`which less`
 export VISUAL="$EDITOR"
-export MAKEFLAGS="-j $NUM_PROCESSORS"
+export MAKEFLAGS="-j $NUM_PROCESSORS V=0"
+#which most >/dev/null && export MANPAGER="`which most` -s"
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 export PATH=$HOME/bin:$PATH
 export PATH=/home/kapil/softwares/cov-analysis-linux64-6.5.0/bin:$PATH
@@ -37,11 +39,13 @@ export DMTCP_HOST=localhost
 export DMTCP_PORT=7799
 #export DMTCP_CHECKPOINT_DIR=/tmp
 
+# Subversion aliases
 alias sd="svn diff --diff-cmd=colordiff"
 alias svd="svn diff --diff-cmd=svnvimdiff"
 alias sgd="svn diff --diff-cmd=svngvimdiff"
 alias svnq="svn status -q"
 
+# Git aliases
 alias gd="git diff"
 alias gd1="git diff HEAD~1"
 alias gd2="git diff HEAD~2"
@@ -53,10 +57,22 @@ alias gd43="git diff HEAD~4 HEAD~3"
 alias gd54="git diff HEAD~5 HEAD~4"
 alias gdm="git diff master"
 alias gdc="git diff --cached"
+alias gdw="git wdiff"
 alias gst="git status"
 alias gl="git log"
 alias gcp="git cherry-pick"
+alias gbr="git br"
+alias gpr="git pull --rebase"
+alias gri="git rebase -i HEAD~15"
 
+# make aliases
+alias mkt='make check GTEST_FILTER=""'
+
+# [g]vim aliases
+alias gvim="gvim -p"
+alias gvi="gvim -p"
+
+# Pstree aliases
 alias pstree="pstree -pu $USER"
 alias kpstree="pstree -p `pgrep konsole`"
 alias tpstree="pstree -p | grep -v 'amarok\|akon\|Google\|dbus\|gvfs\|gconf\|kde\|chrome\|kio\|klaun\|kpat\|ksms\|tracker\|zeit\|ck-lau\|kgpb\|klipp\|kmix\|knoti\|kglob\|ktorr\|kuiser\|kwalle\|plasma\|pulse\|wine\|rsibre\|mysql\|nacl\|kactivi\|kwin\|kwrapp\|krunn\|gvim' | grep -v '^$'"
@@ -84,9 +100,36 @@ alias xtermcmd='xterm -e'
 
 alias linuxmachines=/proj/crew/bin/linuxmachines
 export CSCOPE_EDITOR=gvim
-function lfd() { ls -l /proc/$*/fd;}
-function cmaps() { cat /proc/$*/maps;}
-function cstatus() { cat /proc/$*/status;}
+function lfd()
+{
+  if [[ "$*" = [[:digit:]]* ]] ; then
+    pid=$*
+  else
+    pid=`pgrep -n $*`
+  fi
+  ls -l /proc/$pid/fd
+}
+
+function cmaps()
+{
+  if [[ "$*" = [[:digit:]]* ]] ; then
+    pid=$*
+  else
+    pid=`pgrep -n $*`
+  fi
+  cat /proc/$pid/maps
+}
+
+function cstatus()
+{
+  if [[ "$*" = [[:digit:]]* ]] ; then
+    pid=$*
+  else
+    pid=`pgrep -n $*`
+  fi
+  cat /proc/$pid/status
+}
+
 function tst()
 {
   echo "PID: \t Tracer  Status"
@@ -116,3 +159,27 @@ alias gsk=git stash --keep-index
 #    xinput set-int-prop $i "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
 #  done
 #}
+export LESS=-RsM~gIsw
+alias cdd="cd ~/dmtcp"
+
+btkb="ThinkPad Compact Bluetooth Keyboard with TrackPoint"
+usbkb="Lite-On Technology Corp. ThinkPad USB Keyboard with TrackPoint"
+kb="TPPS/2 IBM TrackPoint"
+
+if [[ ! -z `xinput list | grep "${btkb}"` ]]; then
+  xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation" 1
+  xinput set-prop "pointer:${btkb}" "Evdev Middle Button Emulation" 1
+  xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation Button" 2
+  xinput set-int-prop "pointer:${btkb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+fi
+
+if [[ ! -z `xinput list | grep "${usbkb}"` ]]; then
+  xinput set-prop "pointer:${usbkb}" "Evdev Wheel Emulation" 1
+  xinput set-prop "pointer:${usbkb}" "Evdev Middle Button Emulation" 1
+  xinput set-prop "pointer:${usbkb}" "Evdev Wheel Emulation Button" 2
+  xinput set-int-prop "pointer:${usbkb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+fi
+
+if [[ ! -z `xinput list | grep "${kb}"` ]]; then
+  xinput set-int-prop "pointer:${kb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+fi
