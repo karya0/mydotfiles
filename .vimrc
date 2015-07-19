@@ -15,6 +15,8 @@ set softtabstop=4
 set shiftwidth=2
 set expandtab
 
+set tabpagemax=100
+
 filetype plugin indent on " load filetype plugins/indent settings
 
 
@@ -121,7 +123,8 @@ if has("gui_gtk2")
 "  set guifont=LucidaSansTypewriter\ 9
 else
 "    set guifont=-misc-fixed-medium-r-normal--10-100-75-75-c-60-iso8859-1
-    set guifont=-*-lucidatypewriter-*-*-*-*-9-*-*-*-*-*-*-*-
+    set guifont=-*-lucidatypewriter-*-*-*-*-8-*-*-*-*-*-*-*-
+    set guifont=Monospace\ 9
 endif
 
 highlight Normal guifg=darkgray guibg=black
