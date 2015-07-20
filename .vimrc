@@ -80,7 +80,7 @@ endif
 " Now we set some defaults for the editor 
 set autoindent		" always set autoindenting on
 set linebreak		" Don't wrap words by default
-set textwidth=0		" Don't wrap lines by default 
+set textwidth=80		" Don't wrap lines by default 
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set title
