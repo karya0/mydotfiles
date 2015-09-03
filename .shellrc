@@ -64,6 +64,7 @@ alias gcp="git cherry-pick"
 alias gbr="git br"
 alias gpr="git pull --rebase"
 alias gri="git rebase -i HEAD~15"
+alias grb="git rebase"
 
 # make aliases
 alias mkt='make check GTEST_FILTER=""'
