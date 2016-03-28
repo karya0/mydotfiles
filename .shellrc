@@ -60,18 +60,19 @@ alias gdc="git diff --cached"
 alias gdw="git wdiff"
 alias gst="git status"
 alias gl="git log"
+alias gll="gl --oneline --decorate"
 alias gcp="git cherry-pick"
 alias gbr="git br"
 alias gpr="git pull --rebase"
-alias gri="git rebase -i HEAD~15"
+alias gri="git rebase -i HEAD~10"
 alias grb="git rebase"
 
 # make aliases
 alias mkt='make check GTEST_FILTER=""'
 
 # [g]vim aliases
-alias gvim="gvim -p"
-alias gvi="gvim -p"
+alias gvim="gvim -p -geometry 82x50"
+alias gvi="gvim -p -geometry 82x50"
 
 # Pstree aliases
 alias pstree="pstree -pu $USER"

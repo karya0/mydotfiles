@@ -20,7 +20,8 @@ set tabpagemax=100
 filetype plugin indent on " load filetype plugins/indent settings
 
 
-set autochdir " always switch to the current file directory
+"set autochdir " always switch to the current file directory
+autocmd BufEnter * silent! lcd %:p:h
 
 set wildmenu
 set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png
@@ -98,8 +99,9 @@ set hidden             " Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes) in terminals
 set mousemodel=popup
 "set spell "spell checking
-"set vb t_vb= 
-"visual beep
+" visual beep
+set vb t_vb= 
+
 if exists('+colorcolumn')
   set colorcolumn=81
 endif
@@ -110,8 +112,8 @@ map! <S-Insert> <MiddleMouse>
 
 if has("gui_gtk2")
   " hi clear CursorLine
-  hi CursorLine ctermbg=Black guibg=#1f1f00
-  hi CursorColumn ctermbg=Black guibg=#070700
+  "hi CursorLine ctermbg=Black guibg=#1f1f00
+  "hi CursorColumn ctermbg=Black guibg=#070700
   " gui=underline
   "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
   "match OverLength '\%>81v.\+'
