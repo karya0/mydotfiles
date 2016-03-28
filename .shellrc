@@ -27,7 +27,7 @@ export NUM_PROCESSORS=`cut -f 1 -d : < /proc/cpuinfo | grep -c processor`
 export EDITOR=`which vim`
 export PAGER=`which less`
 export VISUAL="$EDITOR"
-export MAKEFLAGS="-j $NUM_PROCESSORS V=0"
+export MAKEFLAGS="-j$NUM_PROCESSORS V=0"
 #which most >/dev/null && export MANPAGER="`which most` -s"
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
@@ -168,6 +168,7 @@ btkb="ThinkPad Compact Bluetooth Keyboard with TrackPoint"
 usbkb="Lite-On Technology Corp. ThinkPad USB Keyboard with TrackPoint"
 kb="TPPS/2 IBM TrackPoint"
 
+if `which xinput 2>&1 > /dev/null`; then
 if [[ ! -z `xinput list | grep "${btkb}"` ]]; then
   xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation" 1
   xinput set-prop "pointer:${btkb}" "Evdev Middle Button Emulation" 1
@@ -184,4 +185,5 @@ fi
 
 if [[ ! -z `xinput list | grep "${kb}"` ]]; then
   xinput set-int-prop "pointer:${kb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+fi
 fi

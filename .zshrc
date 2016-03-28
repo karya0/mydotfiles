@@ -44,7 +44,6 @@ export NUM_PROCESSORS=`cut -f 1 -d : < /proc/cpuinfo | grep -c processor`
 export EDITOR=`which vim`
 export PAGER=`which less`
 export VISUAL="$EDITOR"
-export MAKEFLAGS="-j $NUM_PROCESSORS"
 export WINEDEBUG="fixme-all"
 
 # pretty colorings 
@@ -99,7 +98,7 @@ clreset="%{$reset_color%}"
 dollarsign='>' #'$'
 prettypwd="%(4~|...|)%3~"
 
-HOSTDISPLAY="$"
+HOSTDISPLAY="$HOST"
 
 if [[ "$MACHINE" = "x86_64" ]]; then
   BITCOUNT=$(file `which cat` | sed -e "s# #\n#g" | grep bit | cut -d - -f 1)
@@ -231,7 +230,6 @@ alias p='ps -eHf f'
 #alias dselect='screen su --command="dselect update select install"'
 #alias ssh='ssh -X'
 alias xtermcmd='xterm -e'
-alias make='make -j5'
 
 ################################################################################
 # Completion
