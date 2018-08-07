@@ -27,6 +27,11 @@ set wildmenu
 set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png
 set wildmode=list:longest,full
 
+" ignore these files when completing names and in Ex
+set wildignore=.svn,CVS,.git,*.o,*.a,*.obj,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pdf,*.bak,*.beam
+" set of file name suffixes that will be given a lower priority when it comes to matching wildcards
+set suffixes+=.old
+
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 syntax on
@@ -34,17 +39,28 @@ set hlsearch
 hi search guibg=LightGreen guifg=Black cterm=NONE ctermbg=LightCyan ctermfg=Black 
 "syntax highlight shell scripts as per POSIX,
 "not the original Bourne shell which very few use
+
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+highlight! link DiffText ToDo
+
+
 let g:is_posix = 1
 
-set background=dark
+"set background=dark
+"colorscheme solarized
 
-autocmd FileType python setlocal shiftwidth=4 tabstop=4
+autocmd FileType python setlocal shiftwidth=2 tabstop=2
 autocmd FileType md setlocal shiftwidth=4 tabstop=4
 autocmd Filetype tex setlocal nofoldenable
-autocmd Filetype tex set cursorline!
+"autocmd Filetype tex set cursorline!
 autocmd Filetype tex set tw=72
 autocmd Filetype tex set spell
-autocmd Filetype c,c++,python set cino=(0
+autocmd Filetype c,cpp,python set cino=(0,W4
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 
 "Make the completion menus readable
 highlight Pmenu ctermfg=white ctermbg=red guifg=white guibg=red
@@ -79,7 +95,8 @@ if has("autocmd")
 endif
 
 " Now we set some defaults for the editor 
-set autoindent		" always set autoindenting on
+autocmd Filetype c,cpp,python,tex set autoindent
+"set autoindent		" always set autoindenting on
 set linebreak		" Don't wrap words by default
 set textwidth=80		" Don't wrap lines by default 
 set history=50		" keep 50 lines of command line history
@@ -102,6 +119,7 @@ set mousemodel=popup
 " visual beep
 set vb t_vb= 
 
+set guicursor+=a:blinkon0
 if exists('+colorcolumn')
   set colorcolumn=81
 endif
@@ -110,7 +128,7 @@ endif
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 
-if has("gui_gtk2")
+if has("gui_gtk3")
   " hi clear CursorLine
   "hi CursorLine ctermbg=Black guibg=#1f1f00
   "hi CursorColumn ctermbg=Black guibg=#070700
@@ -120,7 +138,20 @@ if has("gui_gtk2")
 
 
 
-  set guifont=Monospace\ 9
+  set guifont=BeraSansMono\ 9
+"  set guifont=MiscConsole\ 8
+"  set guifont=LucidaSansTypewriter\ 9
+elseif has("gui_gtk2")
+  " hi clear CursorLine
+  "hi CursorLine ctermbg=Black guibg=#1f1f00
+  "hi CursorColumn ctermbg=Black guibg=#070700
+  " gui=underline
+  "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  "match OverLength '\%>81v.\+'
+
+
+
+  set guifont=LiberationMono\ 9
 "  set guifont=MiscConsole\ 8
 "  set guifont=LucidaSansTypewriter\ 9
 else
