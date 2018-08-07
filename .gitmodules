@@ -16,3 +16,6 @@
 [submodule "prezto"]
 	path = prezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule ".vim/pack/kapil/start/vim-gitgutter"]
+	path = .vim/pack/kapil/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
