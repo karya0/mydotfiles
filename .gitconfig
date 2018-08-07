@@ -1,6 +1,6 @@
 [user]
 	name = Kapil Arya
-	email = kapil@ccs.neu.edu
+	email = kapil@mesosphere.io
 [color]
         #diff = auto
 	status = auto
@@ -16,6 +16,8 @@
 	sta = stash
 	ldiff = difftool -t latex   
 	wdiff = diff --color-words
+[pager]
+	branch = false
 [color "diff"]
 	meta = blue bold
 	frag = cyan bold
