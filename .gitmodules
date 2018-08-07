@@ -13,3 +13,6 @@
 [submodule ".vim/pack/kapil/start/vimtex"]
 	path = .vim/pack/kapil/start/vimtex
 	url = https://github.com/lervag/vimtex
+[submodule "prezto"]
+	path = prezto
+	url = https://github.com/sorin-ionescu/prezto.git
