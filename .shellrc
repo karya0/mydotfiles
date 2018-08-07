@@ -27,6 +27,9 @@ fi
 #  fi
 # fi
 
+# Setup Maven
+export M2_HOME=$HOME/tools/apache-maven-3.3.9
+
 export NUM_PROCESSORS=`cut -f 1 -d : < /proc/cpuinfo | grep -c processor`
 export EDITOR=`which vim`
 export PAGER=`which less`
