@@ -19,3 +19,9 @@
 [submodule ".vim/pack/kapil/start/vim-gitgutter"]
 	path = .vim/pack/kapil/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule ".vim/pack/kapil/start/tagbar"]
+	path = .vim/pack/kapil/start/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule ".vim/pack/kapil/start/vim-airline"]
+	path = .vim/pack/kapil/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline

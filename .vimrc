@@ -274,3 +274,22 @@ if exists("colors_name") == 0
     " See :help syntax-loading for more info
 endif
 
+
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+let g:ycm_always_populate_location_list = 1
+let g:ycm_confirm_extra_conf = 0
+set updatetime=100
+
+"GitGutter
+highlight SignColumn ctermbg=black
+highlight SignColumn guibg=black
+" Disable realtime updates
+autocmd! gitgutter CursorHold,CursorHoldI
+" Enable signs after saving file
+autocmd BufWritePost * GitGutter
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
