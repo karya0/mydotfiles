@@ -185,20 +185,21 @@ usbkb="Lite-On Technology Corp. ThinkPad USB Keyboard with TrackPoint"
 kb="TPPS/2 IBM TrackPoint"
 
 if `which xinput 2>&1 > /dev/null`; then
-if [[ ! -z `xinput list | grep "${btkb}"` ]]; then
-  #xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation" 1
-  #xinput set-prop "pointer:${btkb}" "Evdev Middle Button Emulation" 1
-  #xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation Button" 2
-  xinput set-int-prop "pointer:${btkb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
-  #xinput set-prop "pointer:${btkb}" "Device Accel Velocity Scaling" 50 
-  #xinput set-prop "pointer:${btkb}" "Device Accel Profile" 2
-fi
+  if [[ ! -z `xinput list | grep "${btkb}"` ]]; then
+    #xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation" 1
+    #xinput set-prop "pointer:${btkb}" "Evdev Middle Button Emulation" 1
+    #xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation Button" 2
+    xinput set-int-prop "pointer:${btkb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+    #xinput set-prop "pointer:${btkb}" "Device Accel Velocity Scaling" 50 
+    #xinput set-prop "pointer:${btkb}" "Device Accel Profile" 2
+  fi
 
-if [[ ! -z `xinput list | grep "${usbkb}"` ]]; then
-  #xinput set-prop "pointer:${usbkb}" "Evdev Wheel Emulation" 1
-  #xinput set-prop "pointer:${usbkb}" "Evdev Middle Button Emulation" 1
-  #xinput set-prop "pointer:${usbkb}" "Evdev Wheel Emulation Button" 2
-  xinput set-int-prop "pointer:${usbkb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+  if [[ ! -z `xinput list | grep "${usbkb}"` ]]; then
+    #xinput set-prop "pointer:${usbkb}" "Evdev Wheel Emulation" 1
+    #xinput set-prop "pointer:${usbkb}" "Evdev Middle Button Emulation" 1
+    #xinput set-prop "pointer:${usbkb}" "Evdev Wheel Emulation Button" 2
+    xinput set-int-prop "pointer:${usbkb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
+  fi
 fi
 
 if [[ ! -z `xinput list | grep "${kb}"` ]]; then
