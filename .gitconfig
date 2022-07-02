@@ -1,6 +1,6 @@
 [user]
 	name = Kapil Arya
-	email = kapil@mesosphere.io
+	email = kapil.arya.17@gmail.com
 [color]
         #diff = auto
 	status = auto
@@ -9,8 +9,10 @@
 [alias]
 	st = status
 	di = diff
+	dc = diff --cached
 	co = checkout
 	ci = commit
+	cp = cherry-pick
 	br = branch
 	pr = pull --rebase
 	sta = stash

@@ -139,6 +139,7 @@ if has("gui_gtk3")
 
 
   set guifont=BeraSansMono\ 9
+  set guifont=LiberationMono\ 9
 "  set guifont=MiscConsole\ 8
 "  set guifont=LucidaSansTypewriter\ 9
 elseif has("gui_gtk2")
@@ -167,22 +168,6 @@ set guioptions-=m
 
 " Remove toolbar
 set guioptions-=T
-
-" VimLatex Settings
-" =================
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" can be called correctly.
-set shellslash
-
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -214,7 +199,7 @@ if exists("colors_name") == 0
 
     "background set to dark in .vimrc
     "So pick appropriate defaults.
-    hi Normal     guifg=darkgray guibg=black
+    hi Normal     guifg=darkgray guibg=gray16
     hi Visual     gui=none guifg=black guibg=yellow
 
     "The following removes bold from all highlighting
@@ -274,22 +259,37 @@ if exists("colors_name") == 0
     " See :help syntax-loading for more info
 endif
 
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
 
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
-let g:ycm_always_populate_location_list = 1
-let g:ycm_confirm_extra_conf = 0
-set updatetime=100
+
+"if !exists('g:ycm_semantic_triggers')
+"let g:ycm_semantic_triggers = {}
+"endif
+"let g:ycm_always_populate_location_list = 1
+"let g:ycm_confirm_extra_conf = 0
+
+"au VimEnter * let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
 "GitGutter
-highlight SignColumn ctermbg=black
-highlight SignColumn guibg=black
+set updatetime=100
+
+let g:gitgutter_override_sign_column_highlight = 0
+highlight SignColumn ctermbg=darkgray
+highlight SignColumn guibg=gray14
+
 " Disable realtime updates
-autocmd! gitgutter CursorHold,CursorHoldI
+au VimEnter * autocmd! gitgutter CursorHold,CursorHoldI
 " Enable signs after saving file
 autocmd BufWritePost * GitGutter
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
+
+
+" Rainbow Parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces

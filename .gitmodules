@@ -25,3 +25,9 @@
 [submodule ".vim/pack/kapil/start/vim-airline"]
 	path = .vim/pack/kapil/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline
+[submodule ".vim/pack/kapil/start/syntastic"]
+	path = .vim/pack/kapil/start/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule ".vim/pack/kapil/start/rainbow_parentheses"]
+	path = .vim/pack/kapil/start/rainbow_parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim

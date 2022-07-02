@@ -42,6 +42,9 @@ export PATH=$HOME/bin:$PATH
 #export PATH=/home/kapil/softwares/cov-analysis-linux64-6.5.0/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/usr/lib:$LD_LIBRARY_PATH
 
+export OLD_PATH=$PATH
+export PATH="/home/kaarya/bin:/home/kaarya/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib"
+export PATH="$PATH:/mnt/c/Users/kaarya/AppData/Local/Programs/Microsoft VS Code/bin"
 export DMTCP_COORD_HOST=localhost
 export DMTCP_COORD_PORT=7799
 #export DMTCP_CHECKPOINT_DIR=/tmp
@@ -76,7 +79,7 @@ alias grb="git rebase"
 alias gsk="git stash --keep-index"
 
 # make aliases
-alias mkt='make check GTEST_FILTER=""'
+#alias mkt='make check GTEST_FILTER=""'
 
 # [g]vim aliases
 #alias gvim="gvim -p -geometry 82x50"
@@ -95,12 +98,14 @@ alias ypstree="/usr/bin/pstree `pgrep yakuake` -p"
 alias tpstree="pstree -p | grep -v 'amarok\|akon\|Google\|dbus\|gvfs\|gconf\|kde\|chrome\|kio\|klaun\|kpat\|ksms\|tracker\|zeit\|ck-lau\|kgpb\|klipp\|kmix\|knoti\|kglob\|ktorr\|kuiser\|kwalle\|plasma\|pulse\|wine\|rsibre\|mysql\|nacl\|kactivi\|kwin\|kwrapp\|krunn\|gvim' | grep -v '^$'"
 alias grep="grep -sI --color"
 
+# LS aliases
 export LS_OPTIONS='--color=auto'
 eval `dircolors`
 alias ls='ls $LS_OPTIONS'
 alias ll='ls $LS_OPTIONS -l'
 alias ltr='ls $LS_OPTIONS -ltr'
 alias l='ls $LS_OPTIONS -lAh'
+
 alias rm='rm -vi'
 alias cp='cp -vi'
 alias mv='mv -vi'
@@ -110,8 +115,7 @@ alias p='ps -eHf f'
 #alias dselect='screen su --command="dselect update select install"'
 #alias ssh='ssh -X'
 alias xtermcmd='xterm -e'
-#alias make='make -j3'
-
+alias top="htop"
 
 #xhost +local: 2>&1 > /dev/null
 
@@ -164,50 +168,7 @@ alias gdp="git show"
 
 function pclean () { pkill -9 dmtcp; pkill -9 gdb; pkill -9 mtcp_restart;}
 
-#function enable_scroll()
-#{
-#  for i in `xinput list | grep Keyboard | cut -f2|cut -d'=' -f2`
-#  do
-#    xinput set-int-prop $i "Evdev Wheel Emulation" 8 1
-#    xinput set-int-prop $i "Evdev Wheel Emulation Button" 8 2
-#    xinput set-int-prop $i "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
-#  done
-#}
 export LESS=-RsM~gIsw
 alias cdd="cd ~/dmtcp"
-alias cdm="cd ~/mesos"
-alias cdmm="cd ~/mesos/master"
-alias cdmb="cd ~/mesos/master/build"
-alias mkb="mkdir build; cd build"
 
-btkb="ThinkPad Compact Bluetooth Keyboard with TrackPoint"
-usbkb="Lite-On Technology Corp. ThinkPad USB Keyboard with TrackPoint"
-kb="TPPS/2 IBM TrackPoint"
-
-if `which xinput 2>&1 > /dev/null`; then
-  if [[ ! -z `xinput list | grep "${btkb}"` ]]; then
-    #xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation" 1
-    #xinput set-prop "pointer:${btkb}" "Evdev Middle Button Emulation" 1
-    #xinput set-prop "pointer:${btkb}" "Evdev Wheel Emulation Button" 2
-    xinput set-int-prop "pointer:${btkb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
-    #xinput set-prop "pointer:${btkb}" "Device Accel Velocity Scaling" 50 
-    #xinput set-prop "pointer:${btkb}" "Device Accel Profile" 2
-  fi
-
-  if [[ ! -z `xinput list | grep "${usbkb}"` ]]; then
-    #xinput set-prop "pointer:${usbkb}" "Evdev Wheel Emulation" 1
-    #xinput set-prop "pointer:${usbkb}" "Evdev Middle Button Emulation" 1
-    #xinput set-prop "pointer:${usbkb}" "Evdev Wheel Emulation Button" 2
-    xinput set-int-prop "pointer:${usbkb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
-  fi
-fi
-
-if [[ ! -z `xinput list | grep "${kb}"` ]]; then
-  xinput set-int-prop "pointer:${kb}" "Evdev Wheel Emulation Axes" 8 6, 7, 4, 5
-fi
-
-ssh-add ~/.ssh/{mesosphere-repo1.hw.ca1.mesosphere.com,id_rsa,mesosphere-shared-ec2-default-dev-sa-se,jenkins-aws} 2&> /dev/null
-
-export WORKON_HOME=${HOME}/.virtualenvs
-source `which virtualenvwrapper.sh`
 #source <(maws completion bash)

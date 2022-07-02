@@ -4,7 +4,7 @@
 # described here:
 #   http://sourceware.org/gdb/current/onlinedocs/gdb/Python-API.html#Python-API
 
-from __future__ import with_statement
+
 import subprocess
 import string
 import os
@@ -66,17 +66,17 @@ class ColorBT(gdb.Command):
     def printFrame (self, count, frame):
         if not frame.is_valid():
             return
-        print "#%2d" % (count),
-        print " %s0x%x%s" % (PC, frame.pc(), ENDC),
-        print " in %s%s%s" % (FUNCTION, frame.name(), ENDC),
+        print("#%2d" % (count), end=' ')
+        print(" %s0x%x%s" % (PC, frame.pc(), ENDC), end=' ')
+        print(" in %s%s%s" % (FUNCTION, frame.name(), ENDC), end=' ')
         sal = frame.find_sal()
         if sal.is_valid():
             if sal.symtab != None:
-                print " at %s%s%s" % (FILE, frame.find_sal().symtab.filename, ENDC),
-                print "\b%s:%s" % (FAIL, ENDC),
-                print "\b%s%d%s" % (LINE, frame.find_sal().line, ENDC)
+                print(" at %s%s%s" % (FILE, frame.find_sal().symtab.filename, ENDC), end=' ')
+                print("\b%s:%s" % (FAIL, ENDC), end=' ')
+                print("\b%s%d%s" % (LINE, frame.find_sal().line, ENDC))
             else:
-                print sal
+                print(sal)
         #print " in %s%s%s" % (FUNCTION, frame.name(), ENDC)
         return
 
@@ -107,14 +107,14 @@ class ColorBT(gdb.Command):
         _file      = match_obj[5]
         #_line      = int(match_obj[5])
 
-        print "#%s" % (_frame_num),
-        print " %s%s%s" % (PC, _addr, ENDC),
-        print " in %s%s%s" % (FUNCTION, _function, ENDC),
-        print "(%s%s%s)" % (FILE, _args, ENDC),
-        print "%s %s%s%s" % (_atfrom, FILE, _file, ENDC),
+        print("#%s" % (_frame_num), end=' ')
+        print(" %s%s%s" % (PC, _addr, ENDC), end=' ')
+        print(" in %s%s%s" % (FUNCTION, _function, ENDC), end=' ')
+        print("(%s%s%s)" % (FILE, _args, ENDC), end=' ')
+        print("%s %s%s%s" % (_atfrom, FILE, _file, ENDC), end=' ')
         #print "\b%s:%s" % (FAIL, ENDC),
         #print "\b%s%d%s" % (LINE, frame.find_sal().line, ENDC)
-        print ""
+        print("")
         return
 
     def print_backtrace_frame_short(self, match_obj):
@@ -128,14 +128,14 @@ class ColorBT(gdb.Command):
         _file      = match_obj[4]
         #_line      = int(match_obj[5])
 
-        print "#%s" % (_frame_num),
+        print("#%s" % (_frame_num), end=' ')
         #print " %s%s%s in " % (PC, _addr, ENDC),
-        print "%s%s%s" % (FUNCTION, _function, ENDC),
-        print "(%s%s%s)" % (FILE, _args, ENDC),
-        print "%s %s%s%s" % (_atfrom, FILE, _file, ENDC),
+        print("%s%s%s" % (FUNCTION, _function, ENDC), end=' ')
+        print("(%s%s%s)" % (FILE, _args, ENDC), end=' ')
+        print("%s %s%s%s" % (_atfrom, FILE, _file, ENDC), end=' ')
         #print "\b%s:%s" % (FAIL, ENDC),
         #print "\b%s%d%s" % (LINE, frame.find_sal().line, ENDC)
-        print ""
+        print("")
         return
 
     def newbt(self, arg):
@@ -157,7 +157,7 @@ class ColorBT(gdb.Command):
                 if len(frame) > 0:
                     self.print_backtrace_frame_short(frame[0])
                 else:
-                    print line
+                    print(line)
 
     def newbt_old(self, arg):
         regexp = "^#(\d+)\s+(0x[0-9a-f]+|.+)?(?: in | )(.+?)\s+\((.*)\)\s+" \
@@ -182,18 +182,18 @@ class ColorBTObj(gdb.Command):
     def printFrame (self, count, frame):
         if not frame.is_valid():
             return
-        print "#%2d" % (count),
-        print " %s0x%x%s" % (PC, frame.pc(), ENDC),
-        print " in %s%s%s" % (FUNCTION, frame.name(), ENDC),
+        print("#%2d" % (count), end=' ')
+        print(" %s0x%x%s" % (PC, frame.pc(), ENDC), end=' ')
+        print(" in %s%s%s" % (FUNCTION, frame.name(), ENDC), end=' ')
         sal = frame.find_sal()
         if sal.is_valid():
             if sal.symtab != None:
-                print " at %s%s%s" % (FILE, frame.find_sal().symtab.objfile.filename, ENDC),
+                print(" at %s%s%s" % (FILE, frame.find_sal().symtab.objfile.filename, ENDC), end=' ')
                 #print "\b%s:%s" % (FAIL, ENDC),
                 #print "\b%s%d%s" % (LINE, frame.find_sal().line, ENDC)
             else:
-                print sal,
-        print ""
+                print(sal, end=' ')
+        print("")
         #print " in %s%s%s" % (FUNCTION, frame.name(), ENDC)
         return
 
