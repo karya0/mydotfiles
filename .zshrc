@@ -1,9 +1,3 @@
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/mydotfiles/prezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/mydotfiles/prezto/runcoms/zpreztorc"
-  source "${ZDOTDIR:-$HOME}/mydotfiles/prezto/init.zsh"
-fi
-
 # Customize to your needs...
 
 source ~/.shellrc

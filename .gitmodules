@@ -1,6 +1,3 @@
 [submodule ".vim/pack/kapil/start/youcompleteme"]
 	path = .vim/pack/kapil/start/youcompleteme
 	url = https://github.com/valloric/youcompleteme
-[submodule "prezto"]
-	path = prezto
-	url = https://github.com/sorin-ionescu/prezto.git
