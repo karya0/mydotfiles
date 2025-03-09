@@ -1,33 +1,6 @@
-[submodule ".vim/pack/kapil/start/vim-fugitive"]
-	path = .vim/pack/kapil/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
 [submodule ".vim/pack/kapil/start/youcompleteme"]
 	path = .vim/pack/kapil/start/youcompleteme
 	url = https://github.com/valloric/youcompleteme
-[submodule ".vim/pack/kapil/start/ctrlp"]
-	path = .vim/pack/kapil/start/ctrlp
-	url = https://github.com/kien/ctrlp.vim
-[submodule ".vim/pack/kapil/start/nerdtree"]
-	path = .vim/pack/kapil/start/nerdtree
-	url = https://github.com/scrooloose/nerdtree
-[submodule ".vim/pack/kapil/start/vimtex"]
-	path = .vim/pack/kapil/start/vimtex
-	url = https://github.com/lervag/vimtex
 [submodule "prezto"]
 	path = prezto
 	url = https://github.com/sorin-ionescu/prezto.git
-[submodule ".vim/pack/kapil/start/vim-gitgutter"]
-	path = .vim/pack/kapil/start/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter
-[submodule ".vim/pack/kapil/start/tagbar"]
-	path = .vim/pack/kapil/start/tagbar
-	url = https://github.com/majutsushi/tagbar
-[submodule ".vim/pack/kapil/start/vim-airline"]
-	path = .vim/pack/kapil/start/vim-airline
-	url = https://github.com/vim-airline/vim-airline
-[submodule ".vim/pack/kapil/start/syntastic"]
-	path = .vim/pack/kapil/start/syntastic
-	url = https://github.com/scrooloose/syntastic
-[submodule ".vim/pack/kapil/start/rainbow_parentheses"]
-	path = .vim/pack/kapil/start/rainbow_parentheses
-	url = https://github.com/kien/rainbow_parentheses.vim

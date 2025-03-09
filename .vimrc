@@ -78,11 +78,13 @@ noremap <S-space> <C-b>
 noremap <space> <C-f>
 
 
-" map - 0i// j
+" map - 0i// 
+j
 " map _ :s/^\s*\/\/ \=//g
 
 " Some nice abbreviations 
-" ab #i #include ".h"? ":set hls!
+" ab #i #include ".h"? "
+:set hls!
 
 if has("autocmd")
   " When editing a file, always jump to the last known cursor position. 
@@ -280,16 +282,16 @@ highlight SignColumn ctermbg=darkgray
 highlight SignColumn guibg=gray14
 
 " Disable realtime updates
-au VimEnter * autocmd! gitgutter CursorHold,CursorHoldI
+" au VimEnter * autocmd! gitgutter CursorHold,CursorHoldI
 " Enable signs after saving file
-autocmd BufWritePost * GitGutter
+" autocmd BufWritePost * GitGutter
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 
 
 " Rainbow Parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
