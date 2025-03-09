@@ -1,6 +1,6 @@
 [user]
 	name = Kapil Arya
-	email = kapil.arya.17@gmail.com
+	email = kapila@nvidia.com
 [color]
         #diff = auto
 	status = auto
@@ -34,3 +34,5 @@
 	rmdir = true
 [core]
 	excludesfile = ~/.gitignore_global
+[apply]
+	whiltespace = fix
