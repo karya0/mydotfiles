@@ -42,7 +42,3 @@ function precmd(){
   fi
   LASTCMD_START=0
 }
-
-autoload -Uz promptinit
-promptinit
-prompt damoekri

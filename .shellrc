@@ -4,56 +4,17 @@ set +o verbose
 
 ulimit -c 100000000
 
-#add /sbin to path
-if ! echo $PATH | grep :/sbin > /dev/null ; then
-  PATH=/sbin:"${PATH}"
-fi
-
-#add ~/usr/bin to path
-if [ -d ~/usr/bin ] ; then
- if ! echo $PATH | grep ~/usr/bin > /dev/null ; then
-   PATH=~/usr/bin:"${PATH}"
- fi
-fi
-
-if ! echo $PATH | grep ~/go/bin > /dev/null ; then
-  PATH=$HOME/go/bin:"${PATH}"
-fi
-
-# #add ~/bin to path
-# if [ -d ~/bin ] ; then
-#  if ! echo $PATH | grep ~/bin > /dev/null ; then
-#    PATH=~/bin:"${PATH}"
-#  fi
-# fi
-
-# Setup Maven
-export M2_HOME=$HOME/tools/apache-maven-3.3.9
-
-export NUM_PROCESSORS=`cut -f 1 -d : < /proc/cpuinfo | grep -c processor`
 export EDITOR=`which vim`
 export PAGER=`which less`
 export VISUAL="$EDITOR"
-export MAKEFLAGS="-j$NUM_PROCESSORS V=0"
 #which most >/dev/null && export MANPAGER="`which most` -s"
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 export PATH=$HOME/bin:$PATH
-#export PATH=/home/kapil/softwares/cov-analysis-linux64-6.5.0/bin:$PATH
-#export LD_LIBRARY_PATH=$HOME/usr/lib:$LD_LIBRARY_PATH
 
-export OLD_PATH=$PATH
-export PATH="/home/kaarya/bin:/home/kaarya/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib"
-export PATH="$PATH:/mnt/c/Users/kaarya/AppData/Local/Programs/Microsoft VS Code/bin"
 export DMTCP_COORD_HOST=localhost
 export DMTCP_COORD_PORT=7799
 #export DMTCP_CHECKPOINT_DIR=/tmp
-
-# Subversion aliases
-alias sd="svn diff --diff-cmd=colordiff"
-alias svd="svn diff --diff-cmd=svnvimdiff"
-alias sgd="svn diff --diff-cmd=svngvimdiff"
-alias svnq="svn status -q"
 
 # Git aliases
 alias gd="git diff"
@@ -81,16 +42,6 @@ alias gsk="git stash --keep-index"
 # make aliases
 #alias mkt='make check GTEST_FILTER=""'
 
-# [g]vim aliases
-#alias gvim="gvim -p -geometry 82x50"
-alias g=gvi
-alias gvi="gvim -p -geometry 82x50"
-function gvim()
-{
-  args=`echo $* | sed -e 's%:\([[:digit:]]\+\):% \+\1%g'`
-  echo $args | xargs /usr/bin/gvim -p -geometry 82x50
-}
-
 # Pstree aliases
 alias pstree="pstree -pu $USER"
 alias kpstree="/usr/bin/pstree `pgrep konsole` -p"
@@ -100,7 +51,6 @@ alias grep="grep -sI --color"
 
 # LS aliases
 export LS_OPTIONS='--color=auto'
-eval `dircolors`
 alias ls='ls $LS_OPTIONS'
 alias ll='ls $LS_OPTIONS -l'
 alias ltr='ls $LS_OPTIONS -ltr'
@@ -119,8 +69,6 @@ alias top="htop"
 
 #xhost +local: 2>&1 > /dev/null
 
-alias linuxmachines=/proj/crew/bin/linuxmachines
-export CSCOPE_EDITOR=gvim
 function lfd()
 {
   if [[ "$*" = [[:digit:]]* ]] ; then
