@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Customize to your needs...
 
 source ~/.shellrc
@@ -6,10 +13,27 @@ source ~/.shellrc
 bindkey    "^[[1;5D"	backward-word
 bindkey    "^[[1;5C"	forward-word
 
-export HISTSIZE=5000000
-export SAVEHIST=5000000
-setopt hist_ignore_dups # ignore same commands run twice+
 setopt no_share_history
+
+# History settings.
+HISTSIZE=5000000
+SAVEHIST=5000000
+HISTFILE=~/.zsh_history
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Case insensitive autocomplete
+autoload -U compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Syntax highlighting
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Global aliases; expanded anywhere on the line.
 alias -g ...='../..'
@@ -18,7 +42,15 @@ alias -g .....='../../../..'
 
 
 LASTCMD_START=0
-function microtime()    { date +%s.%N }
+function microtime()
+{
+  if [[ $(uname) == "Darwin" ]]; then
+    gdate +%s.%N
+  else
+    date +%s.%N
+  fi
+}
+
 function set_titlebar() {
   [[ "$TERM" = "xterm" ]] && echo -n $'\e]0;'"$@"'\a'
 }
@@ -42,3 +74,16 @@ function precmd(){
   fi
   LASTCMD_START=0
 }
+
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2025-05-06 16:22:58
+export PATH="$PATH:/Users/kapila/.local/bin"
+# Lima BEGIN
+# Make sure iptables and mount.fuse3 are available
+PATH="$PATH:/usr/sbin:/sbin"
+export PATH
+# Lima END

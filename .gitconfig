@@ -30,6 +30,7 @@
 	prompt = false
 [push]
 	default = simple
+	autoSetupRemote = true
 [svn]
 	rmdir = true
 [core]
