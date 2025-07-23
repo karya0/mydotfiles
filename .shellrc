@@ -128,17 +128,24 @@ function start_agent {
     #echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add -q;
+    /usr/bin/ssh-add -q 2>&1 > /dev/null;
 }
 
-# Source SSH settings, if applicable
+function setup_ssh {
+  if ! (ssh-add -lq 2>&1 > /dev/null) ; then
+    return;
+  fi
 
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
+  # Source SSH settings, if applicable
+  if [ -f "${SSH_ENV}" ]; then
+    echo . "${SSH_ENV}" > /dev/null
     #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
-else
+    if ! (ssh-add -lq 2>&1 > /dev/null) ; then
+      start_agent;
+    fi
+  else
     start_agent;
-fi
+  fi
+}
+
+setup_ssh
